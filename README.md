@@ -7,7 +7,7 @@ This is a Socket.io web application built using NodeJS and ExpressJS. It is a si
 To get started, you will need to have NodeJS and npm installed on your computer. Once you have those installed, you can clone this repository and install the dependencies:
 
 git clone https://github.com/kaifkhan1/node-socket-app.git
-npm install -> To install all the Node Dependencies used
+` npm install ` -> To install all the Node Dependencies used
 
 ` npm run dev `
 
