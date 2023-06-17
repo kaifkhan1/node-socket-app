@@ -1,6 +1,6 @@
 # node-socket-app
 
-## Socket.io Web Application
+## Socket.io Web Application 
 This is a Socket.io web application built using NodeJS and ExpressJS. It is a simple chat application that allows users to connect to a server and chat with each other in real time.
 
 ## Getting Started
@@ -9,7 +9,7 @@ To get started, you will need to have NodeJS and npm installed on your computer.
 git clone https://github.com/kaifkhan1/node-socket-app.git
 ` npm install ` -> To install all the Node Dependencies used
 
-` npm run dev `
+` npm start `
 
 The server will start listening on port 3000. You can open a web browser and navigate to http://localhost:3000 to connect to the chat application.
 
