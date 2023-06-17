@@ -20,3 +20,12 @@ The chat application has the following features:
   - Users can connect to the server and chat with each other in real time.
   - Messages are sent and received in real time.
   - Users can see who is currently connected to the chat application.
+
+## Screenshots
+
+![image](https://github.com/kaifkhan1/node-socket-app/assets/76866688/6455be41-a764-4982-9227-6a9874182455)
+
+![image](https://github.com/kaifkhan1/node-socket-app/assets/76866688/0f7e5628-d72d-44d6-a81e-22796d197fbb)
+
+![image](https://github.com/kaifkhan1/node-socket-app/assets/76866688/8b9f81a9-f2e4-4782-a349-d5040a65c1e0)
+
