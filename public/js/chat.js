@@ -12,7 +12,7 @@ const $messages = document.querySelector('#messages')
 const messageTemplate = document.querySelector('#message-template').innerHTML
 const locationMessageTemplate = document.querySelector('#location-message-template').innerHTML
 const sBTemplate = document.querySelector('#sidebar-template').innerHTML
-
+const imageLinkTemplate = document.querySelector('#image-link-template').innerHTML
 
 const {username,room} = Qs.parse(location.search,{ignoreQueryPrefix:true})
 
@@ -67,6 +67,17 @@ socket.on('locationMessage', (message) => {
     autoscroll()
 })
 
+socket.on('imageLink', (message) => {
+    console.log(message)
+    const html = Mustache.render(imageLinkTemplate, {
+        username:message.username,
+        imageUrl: message.imageUrl,
+        createdAt: moment(message.createdAt).format('h:mm a')
+    })
+    $messages.insertAdjacentHTML('beforeend', html)
+    autoscroll()
+})
+
 $messageForm.addEventListener('submit', (e) => {
     e.preventDefault()
 
@@ -87,6 +98,7 @@ $messageForm.addEventListener('submit', (e) => {
     })
 })
 
+
 $sendLocationButton.addEventListener('click', () => {
     if (!navigator.geolocation) {
         return alert('Geolocation is not supported by your browser.')
@@ -105,8 +117,19 @@ $sendLocationButton.addEventListener('click', () => {
     })
 })
 
+
+
+
+const uploadFiles = (files) => {
+    socket.emit('uploadFiles',files[0],(status)=>{
+        console.log(status);
+    })
+}
+
 socket.emit('join',{username,room},(error)=>{
     if(error){
         alert(error)
     }
 })
+
+
