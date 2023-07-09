@@ -1,9 +1,10 @@
+const fs = require('fs')
 const path = require('path')
 const http = require('http')
 const express = require('express')
 const socketio = require('socket.io')
 const Filter = require('bad-words')
-const { generateMessage, generateLocationMessage } = require('./utils/messages')
+const { generateMessage, generateLocationMessage,generateImageMessage} = require('./utils/messages')
 const {addUser,removeUser,getUser,getUserInRoom} = require('./utils/users')
 
 const app = express()
@@ -12,7 +13,7 @@ const io = socketio(server)
 
 const port = process.env.PORT || 3000
 const publicDirectoryPath = path.join(__dirname, '../public')
-
+app.set('view engine','ejs')
 app.use(express.static(publicDirectoryPath))
 
 io.on('connection', (socket) => {
@@ -30,6 +31,7 @@ io.on('connection', (socket) => {
 
         socket.join(user.room)
         socket.emit('message',generateMessage("Admin",'Welcome!'))
+        socket.emit('message',generateMessage("Admin","Only Images are allowed"))
         socket.broadcast.to(user.room).emit('message',generateMessage(`${user.username} has joined!!`))
         io.to(user.room).emit('roomData',{room:user.room,users:getUserInRoom(user.room )})
     })
@@ -50,6 +52,13 @@ io.on('connection', (socket) => {
     socket.on('sendLocation', (coords, callback) => {
         const user = getUser(socket.id)
         io.to(user.room).emit('locationMessage', generateLocationMessage(user.username,`https://google.com/maps?q=${coords.latitude},${coords.longitude}`))
+        callback()
+    })
+
+    socket.on('uploadFiles',(file,callback)=>{
+        // console.log(file.toString('base64'))
+        const user = getUser(socket.id)
+        io.to(user.room).emit('imageLink',generateImageMessage(user.username,file.toString('base64')))
         callback()
     })
 

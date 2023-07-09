@@ -14,7 +14,17 @@ const generateLocationMessage = (username,url) => {
     }
 }
 
+const generateImageMessage = (username,imageUrl) => {
+    return{
+        username,
+        imageUrl,
+        createdAt: new Date().getTime()
+    }
+}
+
+
 module.exports = {
     generateMessage,
-    generateLocationMessage
+    generateLocationMessage,
+    generateImageMessage
 }

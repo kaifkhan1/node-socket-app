@@ -21,6 +21,9 @@
                     <button>Send</button>
                 </form>
                 <button id="send-location">Send location</button>
+                <a id="input-files">
+                    <input type="file" onchange="uploadFiles(this.files)">
+                </a>
             </div>
         </div>
     </div>
@@ -34,6 +37,17 @@
                 <p>{{message}}</p>
             </div>
         </script>
+
+        <script id="image-link-template" type="text/html">
+            <div class="message">
+                <p>
+                    <span class="message__name">{{username}}</span>
+                    <span class="message__meta">{{createdAt}}</span>
+                </p>
+                <img width="150px" height="150px" src="data:image/jpg;base64,{{imageUrl}}" alt="red dot" srcset="">
+            </div>
+        </script>
+    
 
     <script id="location-message-template" type="text/html">
             <div class="message">
